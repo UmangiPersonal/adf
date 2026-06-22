@@ -1,0 +1,68 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SourceDataset_kpo",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestinationDataset_kpo",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureBlobStorage4",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "window1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "window2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SubjectID as integer,",
+				"          Name as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 window(asc(SubjectID, true),",
+				"     rowNum = rowNumber()) ~> window1",
+				"window2 derive(fileName = iif(totalRows<=3, 'output',concat('output_', toString(toInteger(ceil((rowNum) / 3)))))+'.csv',",
+				"          fileIndex = ceil(rowNum/3)) ~> derivedColumn1",
+				"window1 window(totalRows = count()) ~> window2",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     rowUrlColumn:'fileName',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     outputAssertFailedRows: true,",
+				"     assertFailure_container: 'contain1',",
+				"     assertFailure_folderPath: 'errordir',",
+				"     mapColumn(",
+				"          SubjectID,",
+				"          Name",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

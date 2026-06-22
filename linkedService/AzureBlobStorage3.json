@@ -1,0 +1,16 @@
+{
+	"name": "AzureBlobStorage3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://umangiresourcegroup9c0e.blob.core.windows.net/",
+			"tenant": "aa7db77f-372b-49aa-b8c0-976bf3e798bf",
+			"servicePrincipalId": "shahumangi13",
+			"servicePrincipalCredentialType": "ServicePrincipalKey",
+			"accountKind": "Storage",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDA0NTA1OEI0LUJDMDEtNEYwNS05QzBBLTNFNDU3QTU0NzZGMF8xMTkzY2U5NS0wZmE3LTRlOWUtOGIzNS0xYzI2ODI4ODIwM2IiDQp9"
+		}
+	}
+}

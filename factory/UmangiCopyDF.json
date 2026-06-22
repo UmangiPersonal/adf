@@ -1,0 +1,21 @@
+{
+	"name": "UmangiCopyDF",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned,UserAssigned",
+		"principalId": "16960c19-52a1-4369-bc40-d6f3d227e284",
+		"tenantId": "aa7db77f-372b-49aa-b8c0-976bf3e798bf",
+		"userAssignedIdentities": {
+			"/subscriptions/c52348da-4941-40a1-8fd8-49f53cc975d0/resourcegroups/ZealChatGptGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/updated-library--id-b4eb": {
+				"clientId": "191a7340-e12e-4bac-81e5-f1432768d860",
+				"principalId": "e3bdb02c-6a8e-41d9-b9d0-c33e17728b7b"
+			}
+		}
+	}
+}
